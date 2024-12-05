@@ -115,6 +115,7 @@ JAVA_LANG_DEFINE=-DJAVA_INCLUDED
 #ADA_SPAWN_OBJ=ada.$(OBJEXT) ALexer.$(OBJEXT) AdaPrser.$(OBJEXT)
 #ADA_LANG_DEFINE=-DADA_INCLUDED
 
+SPAWN = $(CCCC_SPAWN) $(JAVA_SPAWN) # $(ADA_SPAWN)
 SPAWN_OBJ = $(CCCC_SPAWN_OBJ) $(JAVA_SPAWN_OBJ) $(ADA_SPAWN_OBJ)
 LANG_DEFINES = $(CC_LANG_DEFINE) $(JAVA_LANG_DEFINE) $(ADA_LANG_DEFINE)
 
@@ -148,7 +149,7 @@ $(CCCC_EXE): $(USR_G) $(ANLTR_SPAWN) $(DLG_SPAWN) $(USR_H) $(USR_C) $(ALL_OBJ)
 	$(ANTLR) $(AFLAGS) -gc -gx -pa $< > $*.1st
 	$(ANTLR) $(AFLAGS) -gc -gx -cr $< > $*.xrf
 
-ccccmain.$(OBJEXT) : ccccmain.cc 
+ccccmain.$(OBJEXT) : ccccmain.cc $(SPAWN)
 	$(CCC) $(CCC_OPTS) $(LANG_DEFINES) ccccmain.cc
 
 
